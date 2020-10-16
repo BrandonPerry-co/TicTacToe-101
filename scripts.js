@@ -51,7 +51,10 @@ const addMarker = (id) => {
   // document
   // .innerHTML 
 
-  changeMarker()
+  changeMarker(document.getElementById(id).innerHTML){
+    = currentMarker(id)
+  }
+
 }
 
 
