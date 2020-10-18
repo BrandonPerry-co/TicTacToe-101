@@ -23,6 +23,7 @@ const handleClick = (element) => {
   //  checking to see if the square clicked has anything in it, if not continue
   if(!document.getElementById(element.id).innerHTML){
     addMarker(element.id)
+
   }
 }
 
@@ -51,9 +52,11 @@ const addMarker = (id) => {
   // document
   // .innerHTML 
 
-  changeMarker(document.getElementById(id).innerHTML){
-    = currentMarker(id)
-  }
+ // currentMarker(document.getElementById(id).innerHTML)
+   // = currentMarker(id)
+  document.getElementById(id).innerHTML = currentMarker;
+
+  changeMarker()
 
 }
 
@@ -96,6 +99,7 @@ const resetBoard = () => {
   // =
   // document
   // const
+const squares = document.getElementsByTagName("TD")
   
   // loops over the HTML Collection of TDs and clears out the Xs and Os
   for (i=0; i < squares.length; i++) {
