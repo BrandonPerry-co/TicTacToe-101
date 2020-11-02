@@ -7,6 +7,13 @@
     // next to each @TODO you will find tasks that need to be finished
 
 // The variable will change from X to O based on what player turn it is. We need to hold this so we can place an X or O on the board when they're clicked.
+let board = [
+  ["", "", ""],
+  ["", "", ""],
+  ["", "", ""]
+]
+
+
 let currentMarker = 'X'
 
 
@@ -33,10 +40,6 @@ const handleClick = (element) => {
 
 
 
-
-
-
-
 // this function places the "currentMarker" inside the HTML element that was clicked and calls the "changeMarker" function.
 const addMarker = (id) => {
 
@@ -44,19 +47,19 @@ const addMarker = (id) => {
   console.log(`*** The current marker is:  ${currentMarker}. ***`)
   console.log(`Therefore, a  "${currentMarker}"  should be placed in the square with the id:  ${id}`)
   
-  // @TODO-2: Build a line of code that will set the innerHTML property of the element that was clicked to the "currentMarker"
-  
-  // @TODO-2.5: MIX & MATCH, You will need the following pieces of code to build that line:
-  // = currentMarker
-  // .getElementById(id)
-  // document
-  // .innerHTML 
-
  // currentMarker(document.getElementById(id).innerHTML)
    // = currentMarker(id)
   document.getElementById(id).innerHTML = currentMarker;
 
-  changeMarker()
+    const row = parseInt(element.id.charAt(0));
+
+    const column = parseInt(element.id.charAt(2));
+    
+
+  board[row][column] = currentMarker;
+
+
+  checkForWin()
 
 }
 
@@ -111,3 +114,59 @@ const squares = document.getElementsByTagName("TD")
     squares[i].innerHTML = null
   }  
 }
+
+const checkForWin = () => {
+  if(horizontalWin() || verticalWin() || diagonalWin()) {
+    window.alert(`Player ${currentMarker} won!`)
+  } else {
+    changeMarker()
+  }
+}
+
+const horizontalWin = () => {
+  // Your code here to check for horizontal wins
+  if((board[0][0] == "X" && board[0][1] == "X" && board[0][2] == "X") || (board[0][0] == "O" && board[0][1] == "O" && board[0][2] == "O")) {
+    //win
+    return true;
+  } else if((board[1][0] == "X" && board[1][1] == "X" && board[1][2] == "X") || (board[1][0] == "O" && board[1][1] == "O" && board[1][2] == "O")) {
+    //win
+    return true;
+  } else if((board[2][0] == "X" && board[2][1] == "X" && board[2][2] == "X") || (board[2][0] == "O" && board[2][1] == "O" && board[2][2] == "O")) {
+    //win
+    return true;
+  } else {
+    return false;
+  }
+
+}
+
+const verticalWin = () => {
+  // Your code here to check for vertical wins
+  if((board[0][0] == "X" && board[1][0] == "X" && board[2][0] == "X") || (board[0][0] == "O" && board[1][0] == "O" && board[2][0] == "O")) {
+    //win
+    return true;
+  } else if((board[0][1] == "X" && board[1][1] == "X" && board[2][1] == "X") || (board[0][1] == "O" && board[1][1] == "O" && board[2][1] == "O")) {
+    //win
+    return true;
+  } else if((board[0][2] == "X" && board[1][2] == "X" && board[2][2] == "X") || (board[0][2] == "O" && board[1][2] == "O" && board[2][2] == "O")) {
+    //win
+    return true;
+  } else  {
+    return false;
+  }
+}
+
+const diagonalWin = () => {
+  // Your code here to check for diagonal wins
+  if((board[0][0] == "X" && board[1][1] == "X" && board[2][2] == "X") || (board[0][0] == "O" && board[1][1] == "O" && board[2][2] == "O")) {
+    //win 
+    return true; 
+  } else if((board[0][2] == "X" && board[1][1] == "X" && board[2][0] == "X") || (board[0][2] == "O" && board[1][1] == "O" && board[2][0] == "O")) {
+    //win 
+    return true; 
+  } else  {
+    return false;
+  }
+
+}
+
